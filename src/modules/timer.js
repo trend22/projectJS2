@@ -9,8 +9,9 @@ const timer = (deadline) => {
         let dateStop = new Date(deadline).getTime()
         let dateNow = new Date().getTime()
         let timeRemaining = (dateStop - dateNow) / 1000
-        let days = Math.floor(timeRemaining / 60 / 60 / 24)
-        let hours = Math.floor((timeRemaining / 3600) % 24)
+        // let days = Math.floor(timeRemaining / 60 / 60 / 24)
+        // let hours = Math.floor((timeRemaining / 3600) / 24)
+        let hours = Math.floor((timeRemaining / 3600))
         let minutes = Math.floor((timeRemaining / 60) % 60)
         let seconds = Math.floor(timeRemaining % 60)
 
@@ -26,7 +27,7 @@ const timer = (deadline) => {
 
         return {
             timeRemaining,
-            days,
+            // days,
             hours,
             minutes,
             seconds
@@ -37,7 +38,7 @@ const timer = (deadline) => {
         let getTime = getTimeRemaining()
 
         if (getTime.timeRemaining >= 0) {
-            timerDays.textContent = getTime.days
+            // timerDays.textContent = getTime.days
             timerHours.textContent = getTime.hours
             timerMinutes.textContent = getTime.minutes
             timerSeconds.textContent = getTime.seconds
