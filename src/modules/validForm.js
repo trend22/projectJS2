@@ -22,7 +22,7 @@ const validForm = () => {
     textInputs.forEach((textInput) => {
         textInput.addEventListener('input', (event) => {
             // регулярное выражение допускает ввод только кириллицы, - и пробела
-            event.target.value = event.target.value.replace(/[^а-яА-Я- ]/, "")
+            event.target.value = event.target.value.replace(/[^а-яА-Я\-\ ]/, "")
             console.log(event.target.value)
         })
 
@@ -31,13 +31,13 @@ const validForm = () => {
     emailInputs.forEach((emailInput) => {
         emailInput.addEventListener('input', (event) => {
             // регулярное выражение допускает ввод только латиницы и набора спецсимволов
-            event.target.value = event.target.value.replace(/[^a-zA-Z@-_.!~*']/, "")
+            event.target.value = event.target.value.replace(/[^a-zA-Z0-9\@\-\_\.\!\~\*\']/, "")
         })
     })
     //функция вешает на инпуты с атрибутом [placeholder="Ваше сообщение"] события и не даёт ввод букв 
     messageInput.addEventListener('input', (event) => {
         // регулярное выражение допускает ввод только кириллицы, - и пробела
-        event.target.value = event.target.value.replace(/[^а-яА-Я- ]/, "")
+        event.target.value = event.target.value.replace(/[^а-яА-Я\-\ ]/, "")
     })
     //функция вешает на инпуты с атрибутом [type=tel] события и не даёт ввод букв 
     phoneInputs.forEach((phoneInput) => {
