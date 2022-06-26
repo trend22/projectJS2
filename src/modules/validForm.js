@@ -41,6 +41,28 @@ const validForm = () => {
         }
         return str
     }
+    //функция перевода в верхний регистр первой буквы, а остальные в нижний регистр
+    const validSimbols = (str) => {
+        //исправляем первый символ
+        str = str.replace(/\S+/gi, (word) => {
+
+            word = word.split('')
+            console.log(word.length)
+            for (let i = 0; i < word.length; i++) {
+                if (i === 0) {
+                    word[i].toUpperCase()
+                    word[i] = word[i].toUpperCase()
+                } else {
+                    word[i] = word[i].toLowerCase()
+                }
+            }
+            word = word.join('')
+            return word
+        })
+
+
+        return str
+    }
 
     //функция вешает на инпуты с атрибутом [type=text] события и не даёт ввод букв 
     calcInputs.forEach((calcInput) => {
@@ -55,7 +77,7 @@ const validForm = () => {
         textInput.addEventListener('input', (event) => {
             // регулярное выражение допускает ввод только кириллицы, - и пробела
             event.target.value = event.target.value.replace(/[^а-яА-Я\-\ ]/, "")
-            console.log(event.target.value)
+
         })
     })
     //функция вешает на инпуты форм события blur и проверяет правильность ввода [type=text]
@@ -66,7 +88,7 @@ const validForm = () => {
             //если в тексте встречаются двойные и более дефисы,то менять на один дефис
             event.target.value = validHyphen(event.target.value)
             //перевод первого символа в верхнйи регистр, а остальных в нижний
-            event.target.value = event.target.value.replace(/./, (str) => str[0].toUpperCase())
+            event.target.value = validSimbols(event.target.value)
         })
     })
     //функция вешает на инпуты с атрибутом [type=text] события и не даёт ввод букв 
@@ -94,6 +116,15 @@ const validForm = () => {
         phoneInput.addEventListener('input', (event) => {
             // регулярное выражение допускает ввод только латиницы и набора спецсимволов
             event.target.value = event.target.value.replace(/[^\d()-]/, "")
+        })
+    })
+    //функция вешает на инпуты форм события blur и проверяет правильность ввода [type=tel]
+    phoneInputs.forEach((phoneInput) => {
+        phoneInput.addEventListener('blur', (event) => {
+            //если в тексте встречаются двойные и более пробелы,то менять на один пробел
+            event.target.value = validSpace(event.target.value)
+            //если в тексте встречаются двойные и более дефисы,то менять на один дефис
+            event.target.value = validHyphen(event.target.value)
         })
     })
 }
