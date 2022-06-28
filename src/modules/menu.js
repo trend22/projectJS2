@@ -13,6 +13,9 @@ const menu = () => {
   // const body = document.querySelector('body')
   // console.log(body)
 
+  //переменная для закрытия меню по пустому месту body
+  let isOpenMenu = false
+
   const toggleMenu = () => {
     menu.classList.toggle('active-menu')
   }
@@ -53,15 +56,25 @@ const menu = () => {
     }
   }
 
+  //один слушатель на меню
   body.addEventListener('click', (e) => {
+    //открытие меню
     if (e.target.closest('.menu')) {
       toggleMenu()
-    } else if (e.target.matches('a') && e.target.closest('.active-menu')) {
-      getPositionElement(e)
-      toggleMenu()
+      isOpenMenu = true
+      return
     }
-
+    //
+    if (e.target.matches('li a, .close-btn')) {
+      if (e.target.matches('li a')) {
+        getPositionElement(e)
+      }
+      toggleMenu()
+      isOpenMenu = false
+    } else if (!e.target.matches('.active-menu, li') && isOpenMenu) {
+      toggleMenu()
+      isOpenMenu = false
+    }
   })
-
 }
 export default menu
