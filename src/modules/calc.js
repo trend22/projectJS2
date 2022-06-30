@@ -1,3 +1,7 @@
+import {
+  animate
+} from './helpers'
+
 const calc = (price = 100) => {
   const calcBlock = document.querySelector('.calc-block')
   const calcType = document.querySelector('.calc-type')
@@ -6,8 +10,6 @@ const calc = (price = 100) => {
   const calcDays = document.querySelector('.calc-day')
   const calcTotal = document.querySelector('#total')
 
-  let countAnimateCicle = 0
-  let idAnimateInterval
   let totalValue = 0
 
   const countCalc = () => {
@@ -35,22 +37,21 @@ const calc = (price = 100) => {
     }
     //функция анимации полной цены
     if (totalValue !== 0) {
-      animateTotalValue()
+      // вызов функции animate из helpers для анимации модального окна
+      animate({
+        //время выполнения анимации
+        duration: 100,
+        //задание формулы анимации, сейчас она линейная
+        timing(timeFraction) {
+          return timeFraction
+        },
+        //изменение в модальном окне в стиле свойства left
+        draw(progress) {
+          calcTotal.textContent = Math.round(totalValue * progress)
+        },
+      })
     }
   }
-
-  const animateTotalValue = () => {
-    countAnimateCicle += totalValue * 0.05
-    idAnimateInterval = requestAnimationFrame(animateTotalValue)
-
-    if (countAnimateCicle <= totalValue) {
-      calcTotal.textContent = countAnimateCicle
-    } else {
-      cancelAnimationFrame(idAnimateInterval)
-      countAnimateCicle = 0
-    }
-  }
-
 
   calcBlock.addEventListener('input', (e) => {
     if (
