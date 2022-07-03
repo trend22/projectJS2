@@ -6,6 +6,9 @@ import scrollBar from './modules/scrollBar'
 import tabs from './modules/tabs'
 import slider from './modules/slider'
 import calc from './modules/calc'
+import {
+    swiper
+} from './modules/swiper'
 
 timer('3 july 2022')
 menu()
@@ -15,3 +18,4 @@ scrollBar()
 tabs()
 slider()
 calc(100)
+swiper()
