@@ -101,7 +101,7 @@ const validForm = () => {
     //функция вешает на инпуты с атрибутом [placeholder="Ваше сообщение"] события и не даёт ввод букв 
     messageInput.addEventListener('input', (event) => {
         // регулярное выражение допускает ввод только кириллицы, - и пробела
-        event.target.value = event.target.value.replace(/[^а-яА-Я\-\ ]/, "")
+        event.target.value = event.target.value.replace(/[^а-яА-Я1-9\-\ \.\,]/, "")
     })
     //функция вешает на инпуты форм события blur и проверяет правильность ввода [placeholder="Ваше сообщение"]
     messageInput.addEventListener('blur', (event) => {
@@ -115,7 +115,7 @@ const validForm = () => {
     phoneInputs.forEach((phoneInput) => {
         phoneInput.addEventListener('input', (event) => {
             // регулярное выражение допускает ввод только латиницы и набора спецсимволов
-            event.target.value = event.target.value.replace(/[^\d()-]/, "")
+            event.target.value = event.target.value.replace(/[^\d\+()-]/, "")
         })
     })
     //функция вешает на инпуты форм события blur и проверяет правильность ввода [type=tel]
