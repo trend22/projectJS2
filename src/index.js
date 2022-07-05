@@ -6,11 +6,13 @@ import scrollBar from './modules/scrollBar'
 import tabs from './modules/tabs'
 import slider from './modules/slider'
 import calc from './modules/calc'
+import sendForm from './modules/sendForm'
 import {
     swiper
 } from './modules/swiper'
 
-timer('3 july 2022')
+
+timer('12 july 2022')
 menu()
 modal()
 validForm()
@@ -19,3 +21,12 @@ tabs()
 slider()
 calc(100)
 swiper()
+sendForm({
+    formId: 'form1'
+})
+sendForm({
+    formId: 'form2'
+})
+sendForm({
+    formId: 'form3'
+})
