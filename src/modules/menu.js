@@ -59,6 +59,8 @@ const menu = () => {
   //один слушатель на меню
   body.addEventListener('click', (e) => {
     //открытие меню
+    //правка 06_07_2022 при перекрёстной проверке
+
     if (e.target.closest('.menu')) {
       toggleMenu()
       isOpenMenu = true
@@ -66,6 +68,7 @@ const menu = () => {
     }
     //
     if (e.target.matches('li a, .close-btn')) {
+      e.preventDefault()
       if (e.target.matches('li a')) {
         getPositionElement(e)
       }
